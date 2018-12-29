@@ -3,16 +3,14 @@
     const nodemailer = require('nodemailer');
     require('dotenv').config();
     // const open = require('open');
-    // const serverless = require('serverless-http');
 
     const app = express();
-    const port = process.env.LISTEN_TO_PORT || 3000;
-    // const token = process.env.REACT_APP_EMAIL_TOKEN;
-    // const router = express.Router();
+    const port = process.env.PORT || 5000;
 
     app.use( bodyParser.json() );
 
-    app.get('/', function (request, response) {
+    // test get
+    app.get('/test', function (request, response) {
         
         console.log('test');
         response.send( 'hello' );
@@ -54,10 +52,9 @@
         
     });
 
-    // app.use('/.netlify/functions/server', router); 
-    // module.exports = app;
-    // module.exports.handler = serverless( app );
-    app.listen(port, () => {
-        // open( 'http://localhost:8080' );
-        console.log(`Listening on port ${port}`)
+    const server = app.listen(port, () => {
+        var port = server.address().port;
+        console.log("Express is working on port " + port);
+        // open( `http://localhost:${port}` );
+        // console.log(`Listening on port ${port}`)
     });

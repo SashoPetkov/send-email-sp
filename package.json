@@ -11,10 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.18.3",
-    "dotenv": "^6.2.0",
+    "dotenv": "6.2.0",
     "express": "4.16.4",
     "nodemailer": "5.0.0",
     "open": "0.0.5",
     "serverless-http": "1.8.0"
+  },
+  "engines": {
+    "node": "10.15.0"
   }
 }
