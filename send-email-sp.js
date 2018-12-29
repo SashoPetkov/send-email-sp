@@ -34,7 +34,7 @@
         
         const token_string = Buffer.from(request.body.token, 'base64').toString('Base64');
         
-        if( token_string.indexOf( 'DQ0NDQ=' > -1 ) ) {
+        // if( token_string.indexOf( 'DQ0NDQ=' > -1 ) ) {
             var transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: 587,
@@ -55,12 +55,13 @@
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                     console.log(error);
+                    response.send('Email is not send! It is some problem');    
                 } else {
                     console.log('Email sent: ' + info.response);
                     response.send('Email is send successfully !');    
                 }
             });
-        }
+        // }
         
     });
 
