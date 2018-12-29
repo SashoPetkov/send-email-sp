@@ -55,7 +55,7 @@
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                     console.log(error);
-                    response.send('Email is not send! It is some problem');    
+                    response.send(`Email is not send! It is some problem ${request.body}`);    
                 } else {
                     console.log('Email sent: ' + info.response);
                     response.send('Email is send successfully !');    
