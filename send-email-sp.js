@@ -35,9 +35,8 @@
 
     // listen form submiting the form form contact us form
     app.post('/api/send-email-sp', function (request, response) {
-        console.log(request.body);
         
-        const token_string = Buffer.from(request.body.token, 'base64').toString('Base64');
+        // const token_string = Buffer.from(request.body.token, 'base64').toString('Base64');
         
         // if( token_string.indexOf( 'DQ0NDQ=' > -1 ) ) {
         //     var transporter = nodemailer.createTransport({
@@ -70,8 +69,7 @@
 
         response.send(`
                             Email is not send! It is some problem 
-                            ${request.body}; 
-                            ${ JSON.parse(equest.body)}
+                            ${request}; 
                     `);     
         
     });
