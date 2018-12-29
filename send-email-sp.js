@@ -24,7 +24,12 @@
 
     app.post('/test-post', function (request, response) {
 
-        response.send( 'response from test POST - successfull!!!' );
+        // response.send( 'response from test POST - successfull!!!' );
+        response.send(`
+                        Email is not send! It is some problem 
+                        ${request.body}; 
+                        ${ JSON.parse(equest.body)}
+        `);   
 
     }); 
 
