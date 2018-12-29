@@ -28,7 +28,7 @@
         response.send(`
                         Email is not send! It is some problem 
                         ${request.body}; 
-                        ${ JSON.parse(equest.body)}
+                        ${ JSON.parse(request.body) }
         `);   
 
     }); 
