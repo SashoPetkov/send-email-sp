@@ -8,7 +8,7 @@
     const port = process.env.PORT || 5000;
 
     app.use( bodyParser.json() );
-    
+
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -20,6 +20,12 @@
         
         console.log('test');
         response.send( 'hello' );
+    }); 
+
+    app.post('/test-post', function (request, response) {
+
+        response.send( 'response from test POST - successfull!!!' );
+
     }); 
 
     // listen form submiting the form form contact us form
