@@ -1,7 +1,6 @@
     const express = require('express');
     const bodyParser = require('body-parser');
     const nodemailer = require('nodemailer');
-    require('dotenv').config();
 
     const app = express();
     const port = process.env.PORT || 5000;
@@ -36,20 +35,23 @@
                 secure: false,
                 auth: {
                     user: process.env.EMAIL_USERNAME,
-                    pass: process.env.EMAIL_PASSWORD
+                    pass: process.env.EMAIL_PASSWORD    
                 },
             });
 
             var mailOptions = {
-                from: `${request.body.name} <${ request.body.email }>`,
+                // from: `${request.body.name} <${ request.body.email }>`,
+                from: `Contact Form <${ request.body.email }>`,
                 to: 'petkovsasho@gmail.com',
                 subject: request.body.subject || 'subject empty',
-                text: request.body.message
+                text: `client name: ${request.body.name} ;
+                       client email: ${request.body.email} ;
+                       message: ${request.body.message} ;`
             };
 
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
-                    response.send(`Email is not send! It is some problem ${request.body}`);    
+                    response.send(`Email is not send! It is some problem ${process.env}`);    
                 } else {
                     response.send('Email is send successfully !');    
                 }
