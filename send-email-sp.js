@@ -69,7 +69,7 @@
 
         response.send(`
                             Email is not send! It is some problem 
-                            ${request}; 
+                            ${ JSON.stringify(request) }; 
                     `);     
         
     });
