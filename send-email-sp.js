@@ -2,7 +2,6 @@
     const bodyParser = require('body-parser');
     const nodemailer = require('nodemailer');
     require('dotenv').config();
-    // const open = require('open');
 
     const app = express();
     const port = process.env.PORT || 5000;
@@ -15,17 +14,14 @@
         next();
     });
 
-    // test get
+    // test GET request
     app.get('/test', function (request, response) {
-        
-        console.log('test');
-        response.send( 'hello' );
+        response.send( 'hello from GET test request!' );
     }); 
-
+    
+    // test POST request
     app.post('/test-post', function (request, response) {
-
-        response.send( 'response from test POST - successfull!!!' );
-
+        response.send( 'Response from POST test request - successfull!!!' );
     }); 
 
     // listen form submiting the form form contact us form
@@ -39,8 +35,8 @@
                 port: 587,
                 secure: false,
                 auth: {
-                    user: 'pet87656@gmail.com',
-                    pass: 'putpunsasho'
+                    user: process.env.EMAIL_USERNAME,
+                    pass: process.env.EMAIL_PASSWORD
                 },
             });
 
@@ -53,10 +49,8 @@
 
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
-                    console.log(error);
-                    response.send(`Email is not send! It is some problem ${request.body.name}`);    
+                    response.send(`Email is not send! It is some problem ${request.body}`);    
                 } else {
-                    console.log('Email sent: ' + info.response);
                     response.send('Email is send successfully !');    
                 }
             });
@@ -66,5 +60,4 @@
 
     const server = app.listen(port, () => {
         var port = server.address().port;
-        console.log("Express is working on port " + port);
     });
