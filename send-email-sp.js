@@ -65,5 +65,5 @@
     });
 
     const server = app.listen(port, () => {
-        var port = server.address().port;
+        console.log( server.address().port );
     });
