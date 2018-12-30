@@ -25,11 +25,6 @@
     app.post('/test-post', function (request, response) {
 
         response.send( 'response from test POST - successfull!!!' );
-        // response.send(`
-        //                 Email is not send! It is some problem 
-        //                 ${request.body}; 
-        //                 ${ JSON.parse(request.body) }
-        // `);   
 
     }); 
 
@@ -44,8 +39,8 @@
                 port: 587,
                 secure: false,
                 auth: {
-                    user: process.env.EMAIL_USERNAME,
-                    pass: process.env.EMAIL_PASSWORD
+                    user: 'pet87656@gmail.com',
+                    pass: 'putpunsasho'
                 },
             });
 
@@ -59,24 +54,17 @@
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                     console.log(error);
-                    response.send(`Email is not send! It is some problem ${request.body}`);    
+                    response.send(`Email is not send! It is some problem ${request.body.name}`);    
                 } else {
                     console.log('Email sent: ' + info.response);
                     response.send('Email is send successfully !');    
                 }
             });
-        }
-
-        // response.send(`
-        //                     Email is not send! It is some problem 
-        //                     ${ request.body }; 
-        //             `);     
+        } 
         
     });
 
     const server = app.listen(port, () => {
         var port = server.address().port;
         console.log("Express is working on port " + port);
-        // open( `http://localhost:${port}` );
-        // console.log(`Listening on port ${port}`)
     });
