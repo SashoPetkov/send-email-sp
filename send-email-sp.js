@@ -4,13 +4,21 @@
 
     const app = express();
     const port = process.env.PORT || 5000;
+    const allowedOrigins = [ 'http://localhost:3000', 'https://myFoodD.netlify.com' ];
 
     app.use( bodyParser.json() );
 
     app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
+        const requestedOrigin = req.headers.origin;
+
+        if ( allowedOrigins.indexOf( requestedOrigin ) > -1 ) {
+            res.header("Access-Control-Allow-Origin", requestedOrigin);
+        }
+
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         next();
+
     });
 
     // test GET request
