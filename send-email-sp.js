@@ -27,15 +27,17 @@
     app.post('/api/send-email-sp', function (request, response) {
         
         const token_string = Buffer.from(request.body.token, 'base64').toString('Base64');
-        
+        const emailUserName = process.env.EMAIL_USERNAME;
+        const emailPassword = process.env.EMAIL_PASSWORD;
+
         if( token_string.indexOf( 'DQ0NDQ=' > -1 ) ) {
             var transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
                 port: 587,
                 secure: false,
                 auth: {
-                    user: process.env.EMAIL_USERNAME,
-                    pass: process.env.EMAIL_PASSWORD    
+                    user: emailUserName,
+                    pass: emailPassword    
                 },
             });
 
@@ -51,7 +53,7 @@
 
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
-                    response.send(`Email is not send! It is some problem ${process.env}`);    
+                    response.send(`Email is not send! It is some problem ${emailUserName}; ${emailPassword}`);    
                 } else {
                     response.send('Email is send successfully !');    
                 }
